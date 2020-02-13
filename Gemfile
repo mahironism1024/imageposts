@@ -34,11 +34,21 @@ gem 'jbuilder', '~> 2.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+
 # login
 gem 'devise'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+
 # image uploader
 gem 'carrierwave'
 gem 'fog'
+
+# 環境変数管理
+gem 'dotenv-rails'
 
 group :development, :test do
   # Use mysql as the database for Active Record
