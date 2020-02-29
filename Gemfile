@@ -27,7 +27,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -49,6 +49,12 @@ gem 'fog'
 
 # 環境変数管理
 gem 'dotenv-rails'
+
+# pagenation
+gem 'kaminari'
+
+# PV数計測Gem
+gem 'impressionist'
 
 group :development, :test do
   # Use mysql as the database for Active Record

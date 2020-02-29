@@ -1,0 +1,17 @@
+<div class="container">
+    <%= render "layouts/sidebar" %>
+</div>
+
+<div class="container">
+<h1>投稿画像一覧</h1>
+<% if @imageposts.any? %>
+    <% @imageposts.each do |imagepost| %>
+        <div class="border p-4">
+            <h2><%= imagepost.impressionist_count(:filter => :ip_address) %></h2>
+            <p><%=link_to imagepost.title, imagepost_path(imagepost) %></p>
+            <p><%= imagepost.description %></p>
+            <img class="img-fluid" src="<%= imagepost.image %>">
+        </div>
+    <% end %>
+<% end %>
+</div>

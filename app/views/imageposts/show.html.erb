@@ -1,0 +1,38 @@
+<h2>pv:&nbsp;<%= @views %></h2>
+<p><%= @imagepost.title %></p>
+<p><%= @imagepost.description %></p>
+<img class="img-fluid" src="<%= @imagepost.image %>">
+
+<% if current_user.like?(@imagepost) %>
+    <%= form_with(model: current_user.likes.find_by(imagepost_id: @imagepost.id), local: true, method: :delete) do |f| %>
+        <%= hidden_field_tag :imagepost_id, @imagepost.id %>
+        <%= f.submit "いいね！", class: "btn btn-danger" %>
+    <% end %>
+<% else %>
+    <%= form_with(model: current_user.likes.build, local: true) do |f| %>
+        <%= hidden_field_tag :imagepost_id, @imagepost.id %>
+        <%= f.submit "いいね！", class: "btn btn-primary" %>
+    <% end %>
+<% end %>
+
+<% if @imagepost.user == current_user %>
+    <%= link_to '編集する', edit_imagepost_path(@imagepost) %>
+    <%= link_to '削除する', imagepost_path(@imagepost), method: :delete %>
+<% end %>
+
+<% if @comments.any? %>
+    <% @comments.each do |comment| %>
+        <p class="border-bottom"><%= comment.user.name %>｜<%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S")%></p>
+        <p><%= comment.content %></p>
+        <% if comment.user == current_user %>
+            <%= link_to "delete", comment_path(comment), method: :delete %>
+        <% end %>
+    <% end %>
+<% end %>
+
+<%= form_with(model: @comment, local: true) do |f| %>
+        <%= f.hidden_field :imagepost_id %>
+        <%= f.label :content, "コメント" %>
+        <%= f.text_area :content, class: "form-control" %>
+        <%= f.submit "投稿", class: "btn btn-primary" %>
+<% end %>

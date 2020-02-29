@@ -1,0 +1,20 @@
+<%= render 'layouts/sidebar' %>
+
+<div class="row">
+    <% if @users.any? %>
+        <% @users.each do |user| %>
+            <div class="card" style="width: 10rem;">
+                <% if user.profimage == nil %>
+                    <img class="card-img-top" src="https://c.tipsfound.com/windows10/02014/8.png">
+                <% else %>
+                    <img class="card-img-top" src="<%= user.profimage %>">
+                <% end %>
+                <div class="card-body">
+                    <p><%= link_to user.name, user_path(user.id)%></p>
+                    <p class="card-text"><%= user.selfintroduction %></p>
+                    <%= render "relationships/follow_button", user: user %> 
+                </div>
+            </div>
+        <% end %>
+    <% end %>
+</div>

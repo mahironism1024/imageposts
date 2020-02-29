@@ -1,0 +1,19 @@
+<% if @user.profimage == nil %>
+    <img src="https://c.tipsfound.com/windows10/02014/8.png">
+<% else %>
+    <img src="<%= @user.profimage %>">
+<% end %>
+<p><%= @user.name %></p>
+
+<%= render "relationships/follow_button", user: @user %>
+
+<div class="container">
+    <% if @imageposts.any? %>
+        <% @imageposts.each do |imagepost| %>
+            <h2><%= imagepost.impressionist_count(:filter => :session_hash) %></h2>
+            <p></i><%= link_to imagepost.title, imagepost_path(imagepost.id) %></p>
+            <p><%= imagepost.description %></p>
+            <img class="img-fluid" src="<%= imagepost.image %>">
+        <% end %>
+    <% end %>
+</div>

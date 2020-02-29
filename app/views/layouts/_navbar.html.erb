@@ -1,0 +1,22 @@
+<header>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <h1><a class="navbar-brand brand-name" href="/">PictPost</a></h1>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarSup">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSup">
+            <ul class="navbar-nav">
+                <% unless user_signed_in? %>
+                    <li class="nav-item"><%= link_to "login", login_path, class: "nav-link" %></li>
+                    <li class="nav-item"><%= link_to "signup", signup_path, class: "nav-link" %></li>
+                <% else %>
+                    <li class="nav-item"><%= link_to "画像投稿", new_imagepost_path, class: "nav-link" %></li>
+                    <li class="nav-item"><%= link_to "マイプロフィール", user_path(current_user), class: "nav-link" %></li>
+                    <li class="nav-item"><%= link_to "signout", destroy_user_session_path, class: "nav-link" %></li>
+                    <img src="<%= current_user.profimage %>" class="rounded-circle" style="width: 50px;, height: 50px;">
+                <% end %>
+            </ul>
+        </div>
+    </nav>
+</header>
