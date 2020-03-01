@@ -1,20 +1,23 @@
-<%= render 'layouts/sidebar' %>
-
 <div class="row">
+    <%= render 'layouts/sidebar' %>
+    
+    <div class="col-sm-8">
+        <h3>ユーザー一覧</h3>
     <% if @users.any? %>
-        <% @users.each do |user| %>
-            <div class="card" style="width: 10rem;">
-                <% if user.profimage == nil %>
-                    <img class="card-img-top" src="https://c.tipsfound.com/windows10/02014/8.png">
-                <% else %>
-                    <img class="card-img-top" src="<%= user.profimage %>">
+            <div class="row">
+                <% @users.each do |user| %>
+                        <div class="col-sm-12 pb-2">
+                            <div class="user-box">
+                                    <% if user.profimage == nil %>
+                                        <img class="card-img-top rounded-circle profile-image" src="https://c.tipsfound.com/windows10/02014/8.png">
+                                    <% else %>
+                                        <img class="card-img-top rounded-circle profile-image" src="<%= user.profimage %>">
+                                    <% end %>
+                                    <p class="flex-item"><%= link_to user.name, user_path(user.id)%> | <%= user.imageposts.count %></p>
+                            </div>
+                        </div>
                 <% end %>
-                <div class="card-body">
-                    <p><%= link_to user.name, user_path(user.id)%></p>
-                    <p class="card-text"><%= user.selfintroduction %></p>
-                    <%= render "relationships/follow_button", user: user %> 
-                </div>
             </div>
-        <% end %>
     <% end %>
+    </div>
 </div>

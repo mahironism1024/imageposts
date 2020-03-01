@@ -1,34 +1,49 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<div class="row">
+  <div class="col-md-6 border-right pt-3">
+    <h3 class="h3-signup">サインアップ</h3>
+    
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
   
-  <div class="field">
-    <%= f.label :name, "ニックネーム" %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
+      <div class="field form-group pt-3">
+        <%= f.label :name, "ニックネーム" %><br />
+        <%= f.text_field :name, autofocus: true, class: "form-control", required: true %>
+      </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <div class="field form-group">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", required: true %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %>文字以上)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+      <div class="field form-group">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %>文字以上)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control", required: true %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+      <div class="field form-group">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", required: true %>
+      </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+      <div class="actions field">
+        <%= f.submit "Sign up", class: "btn btn-primary btn-block" %>
+      </div>
+    <% end %>
+    <%- if controller_name != 'sessions' %>
+      <p class="field">アカウントをお持ちの方は<%= link_to "こちら", new_session_path(resource_name) %><br /></p>
+    <% end %>
   </div>
-<% end %>
+  
+  <div class="col-md-6 pt-3">
+    <h3 class="h3-signup">ソーシャルサインアップ</h3>
+    <div class="inner pt-3">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+  
+</div>
 
-<%= render "devise/shared/links" %>
+

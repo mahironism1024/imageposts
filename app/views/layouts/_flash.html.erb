@@ -1,7 +1,9 @@
-<div>
-    <% if notice %>
-        <p class="alert alert-success"><%= notice %></p>
-    <% elsif alert %>
-        <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
+<div class="row">
+    <div class="col-sm-12 pt-4">
+        <% if notice %>
+            <p class="alert alert-success"><%= notice %></p>
+        <% elsif alert %>
+            <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
+    </div>
 </div>

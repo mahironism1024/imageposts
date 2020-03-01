@@ -13,4 +13,78 @@
  *= require_tree .
  *= require_self
  */
- 
+
+@charset "utf-8";
+
+.sidebar {
+    list-style-type: none;
+}
+
+.signin-btn {
+    font-size: 20px;
+}
+
+.sns-signup {
+    padding: 8px 24px;
+    white-space: nowrap;
+}
+
+.sns-signup a {
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+/*.sns-signup a:hover {*/
+    
+/*}*/
+
+.sns-icon {
+    width: 42px;
+    height: 42px;
+}
+
+.sns-link {
+    padding-left: 8px;
+    font-size: 18px;
+    white-space: nowrap;
+}
+
+.nav-profile-image {
+    width: 48px;
+    height: 48px;
+}
+.profile-image {
+    width: 100px;
+    height: 100px;
+}
+
+.signup-form {
+    padding-right: 16px;
+}
+
+.h3-signup {
+    border-left: 3px solid #007bff;
+    background-color: #e7e7e7;
+    padding: 6px 0 6px 16px;
+    color: #537b9f;
+    border-radius: 4px;
+}
+
+.field {
+    padding: 0 24px;
+}
+
+.user-box {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    font-size: 18px;
+    padding-bottom: 12px;
+}
+
+.flex-item {
+    padding-left: 20px;
+}
+
+
+

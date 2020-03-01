@@ -1,9 +1,16 @@
-<%= render 'layouts/sidebar' %>
+<div class="row p-5">
+    
+</div>
 
 <% if @imageposts.any? %>
-    <% @imageposts.each do |imagepost| %>
-        <p><%=link_to imagepost.title, imagepost_path(imagepost) %></p>
-        <p><%= imagepost.description %></p>
-        <img class="img-fluid" src="<%= imagepost.image %>">
-    <% end %>
+    <div class="row">
+        <%= render 'layouts/sidebar' %>
+        <div class="col-sm-6 offset-sm-2">
+        <% @imageposts.each do |imagepost| %>
+            <p><%=link_to imagepost.title, imagepost_path(imagepost) %></p>
+            <p><%= imagepost.description %></p>
+            <img class="img-fluid" src="<%= imagepost.image %>">
+        <% end %>
+        </div>
+    </div>
 <% end %>

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   
   def index
-    @users = User.order(id: :desc)
+    @users = User.order(id: :desc).page(params[:page]).per(4)
   end
   
   def show
