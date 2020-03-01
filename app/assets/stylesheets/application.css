@@ -16,6 +16,10 @@
 
 @charset "utf-8";
 
+li {
+    list-style: none;
+}
+
 .sidebar {
     list-style-type: none;
 }
@@ -54,8 +58,8 @@
     height: 48px;
 }
 .profile-image {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
 }
 
 .signup-form {
@@ -73,18 +77,4 @@
 .field {
     padding: 0 24px;
 }
-
-.user-box {
-    display: flex;
-    list-style: none;
-    align-items: center;
-    font-size: 18px;
-    padding-bottom: 12px;
-}
-
-.flex-item {
-    padding-left: 20px;
-}
-
-
 

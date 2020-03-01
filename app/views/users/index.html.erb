@@ -1,22 +1,39 @@
 <div class="row">
-    <%= render 'layouts/sidebar' %>
+    <div class="col-md-4">
+        <%= render 'layouts/sidebar' %>
+    </div>
     
-    <div class="col-sm-8">
+    <div class="col-md-8">
         <h3>ユーザー一覧</h3>
     <% if @users.any? %>
             <div class="row">
-                <% @users.each do |user| %>
-                        <div class="col-sm-12 pb-2">
-                            <div class="user-box">
-                                    <% if user.profimage == nil %>
-                                        <img class="card-img-top rounded-circle profile-image" src="https://c.tipsfound.com/windows10/02014/8.png">
-                                    <% else %>
-                                        <img class="card-img-top rounded-circle profile-image" src="<%= user.profimage %>">
-                                    <% end %>
-                                    <p class="flex-item"><%= link_to user.name, user_path(user.id)%> | <%= user.imageposts.count %></p>
-                            </div>
-                        </div>
-                <% end %>
+                <div class="col-12 col-md">
+                    <div class="user-box">
+                        <table class="table table-bordered">
+                            <thead class="thead-light">
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Posts</th>
+                                <th>Followers</th>                                                                            
+                            </thead>
+                            <tbody>
+                                <% @users.each do |user| %>
+                                    <tr>
+                                        <% if user.profimage == nil %>
+                                            <td align="center"><img class="profile-image" src="https://c.tipsfound.com/windows10/02014/8.png"></td>
+                                        <% else %>
+                                            <td align="center"><img class="profile-image" src="<%= user.profimage %>"></td>
+                                        <% end %>
+                                        <td class="align-middle"><%= link_to user.name, user_path(user.id)%></td>
+                                        <td class="align-middle"><%= user.imageposts.count %></td>
+                                        <td class="align-middle"><%= user.followers.count %></td>
+                                    </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                        <%= paginate @users %>
+                    </div>
+                </div>
             </div>
     <% end %>
     </div>

@@ -2,15 +2,17 @@
     
 </div>
 
-<% if @imageposts.any? %>
-    <div class="row">
+<div class="row">
+    <div class="col-md-4">
         <%= render 'layouts/sidebar' %>
-        <div class="col-sm-6 offset-sm-2">
-        <% @imageposts.each do |imagepost| %>
-            <p><%=link_to imagepost.title, imagepost_path(imagepost) %></p>
-            <p><%= imagepost.description %></p>
-            <img class="img-fluid" src="<%= imagepost.image %>">
-        <% end %>
-        </div>
     </div>
-<% end %>
+    
+    <% if @imageposts.any? %>
+        <div class="col-md-8">
+            <% @imageposts.each do |imagepost| %>
+                <img class="img-fluid" src="<%= imagepost.image %>">
+                <p><%=link_to imagepost.title, imagepost_path(imagepost) %></p>
+            <% end %>
+        </div>
+    <% end %>
+</div>

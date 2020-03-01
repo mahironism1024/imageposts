@@ -4,7 +4,7 @@
 <img class="img-fluid" src="<%= @imagepost.image %>">
 
 <% if current_user.like?(@imagepost) %>
-    <%= form_with(model: current_user.likes.find_by(imagepost_id: @imagepost.id), local: true, method: :delete) do |f| %>
+    <%= form_with(model: current_user.likes.find_by(imagepost_id: @imagepost.id), , method: :delete) do |f| %>
         <%= hidden_field_tag :imagepost_id, @imagepost.id %>
         <%= f.submit "いいね！", class: "btn btn-danger" %>
     <% end %>
