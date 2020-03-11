@@ -1,38 +1,55 @@
-<h2>pv:&nbsp;<%= @views %></h2>
-<p><%= @imagepost.title %></p>
-<p><%= @imagepost.description %></p>
-<img class="img-fluid" src="<%= @imagepost.image %>">
+<h3 class="imagepost-title">
+    <%= @imagepost.title %>
+</h3>
+<div class="image-center">
+    <img src="<%= @imagepost.image %>" width="100%">
+</div>
 
-<% if current_user.like?(@imagepost) %>
-    <%= form_with(model: current_user.likes.find_by(imagepost_id: @imagepost.id), , method: :delete) do |f| %>
-        <%= hidden_field_tag :imagepost_id, @imagepost.id %>
-        <%= f.submit "いいね！", class: "btn btn-danger" %>
+<div id="imagepost_show_bar">
+    <div class="icon-group">
+        <div class="icon-item">
+            <i class="far fa-eye text-info"></i><span class="counts"><%= @imagepost.impressions.size %></span>
+        </div>
+        <div class="icon-item">
+            <i class="far fa-comments text-info"></i><span class="counts"><%= @imagepost.comments.size %></span>
+        </div>
+        <%= render 'imageposts/likes_button', imagepost: @imagepost %>
+    </div>
+    <% if @imagepost.user == current_user %>
+        <div id="edit_bar">
+            <%= link_to edit_imagepost_path(@imagepost), class: "btn btn-outline-primary" do %>
+                <i class="fas fa-user-edit"></i><span>&nbsp;編集する</span>
+            <% end %>
+            <%= link_to imagepost_path(@imagepost), method: :delete, class: "btn btn-outline-danger" do %>
+                <i class="fas fa-trash-alt"></i><span>&nbsp;削除する</span>
+            <% end %>
+        </div>
     <% end %>
-<% else %>
-    <%= form_with(model: current_user.likes.build, local: true) do |f| %>
-        <%= hidden_field_tag :imagepost_id, @imagepost.id %>
-        <%= f.submit "いいね！", class: "btn btn-primary" %>
-    <% end %>
-<% end %>
+</div>
 
-<% if @imagepost.user == current_user %>
-    <%= link_to '編集する', edit_imagepost_path(@imagepost) %>
-    <%= link_to '削除する', imagepost_path(@imagepost), method: :delete %>
-<% end %>
 
-<% if @comments.any? %>
-    <% @comments.each do |comment| %>
-        <p class="border-bottom"><%= comment.user.name %>｜<%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S")%></p>
-        <p><%= comment.content %></p>
-        <% if comment.user == current_user %>
-            <%= link_to "delete", comment_path(comment), method: :delete %>
-        <% end %>
-    <% end %>
-<% end %>
 
-<%= form_with(model: @comment, local: true) do |f| %>
-        <%= f.hidden_field :imagepost_id %>
-        <%= f.label :content, "コメント" %>
-        <%= f.text_area :content, class: "form-control" %>
-        <%= f.submit "投稿", class: "btn btn-primary" %>
-<% end %>
+<h4 class="imagepost-description">説明文</h4>
+<div class="description-item">
+    <span><%= @imagepost.description %></span>
+<div>
+
+<div class="row mt-5">
+    <div class="col-md-6 order-md-2">
+        <h4 class="user-info">投稿ユーザー</h4>
+        <%= render 'users/profile_card', user: @user %>
+    </div>
+    
+
+    <div class="col-md-6 order-md-1">
+        <%= render 'comments/comments_board', comments: @comments %>
+        <div class="pt-5">
+            <%= form_with(model: @comment) do |f| %>
+                <%= f.hidden_field :imagepost_id %>
+                <%= f.label :content, "コメント" %>
+                <%= f.text_area :content, class: "form-control mb-2" %>
+                <%= f.submit "投稿", class: "btn btn-primary" %>
+            <% end %>
+        </div>
+    </div>
+</div>

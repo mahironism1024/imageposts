@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     post 'signup', to: 'devise/registrations#create'
   end
   
-  resources :users, only: [:index, :show] do
+  resources :users, only: [:index, :show, :update] do
     member do
       get :followings
       get :followers
@@ -32,4 +32,7 @@ Rails.application.routes.draw do
   resources :imageposts
   resources :relationships, only: [:create, :destroy]
   resources :likes, only: [:create, :destroy]
+  
+  get 'like_ranking', to: 'imageposts#like_ranking'
+  get 'pv_ranking', to: 'imageposts#pv_ranking'
 end

@@ -1,18 +1,18 @@
 class ImagepostsController < ApplicationController
   before_action :authenticate_user!, only: [:show, :new, :create]
   before_action :user_check, only: [:edit, :update, :destroy]
-  impressionist :actions=>[:index, :show]
+  impressionist :actions=>[:show], :unique => [:impressionable_id, :ip_address]
   
   def index
-    @imageposts = Imagepost.order(id: :desc).page(params[:page]).per(25)
-    
+    @imageposts = Imagepost.order(id: :desc).page(params[:page]).per(15)
   end
 
   def show
     @imagepost = Imagepost.find_by(id: params[:id])
+    @user = User.find_by(id: @imagepost.user_id)
     
     if @imagepost
-      @views = @imagepost.impressionist_count(:filter => :ip_address)
+      @views = @imagepost.impressions.size
       @comment = Comment.new(imagepost_id: @imagepost.id)
       @comments = Comment.where(imagepost_id: @imagepost.id)
     else
@@ -55,6 +55,14 @@ class ImagepostsController < ApplicationController
     
     flash[:notice] = "正常に削除されました。"
     redirect_to imageposts_url
+  end
+  
+  def like_ranking
+    @like_ranking = Imagepost.find(Like.group(:imagepost_id).order('count(imagepost_id) desc').limit(3).pluck(:imagepost_id))
+  end
+  
+  def pv_ranking
+    @pv_ranking = Imagepost.find(Impression.group(:impressionable_id).order('count(impressionable_id) desc').limit(3).pluck(:impressionable_id))
   end
   
   private

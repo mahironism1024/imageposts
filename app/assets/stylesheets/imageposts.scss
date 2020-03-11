@@ -1,3 +1,72 @@
 // Place all the styles related to the imageposts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#imagepost_show_bar {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 16px;
+    justify-content: space-between;
+}
+
+/* アイコングループ 設定 */
+
+.icon-group {
+    display: flex;
+    padding-top: 8px;
+    font-size: 20px;
+}
+
+.icon-item {
+    padding-left: 8px;
+}
+
+.counts {
+    padding-left: 6px;
+}
+
+/* いいねアイコン設定 */
+
+.like-icon {
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    appearance: none;
+    background: transparent;
+}
+
+.unlike-icon {
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    appearance: none;
+    background: transparent;
+}
+
+.like {
+    color: pink;
+}
+
+.unlike {
+    color: pink;
+}
+
+/* コメントアイコン 設定*/
+
+.imagepost-title {
+    border-left: 3px solid skyblue;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+.imagepost-description {
+    border-left: 3px solid skyblue;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+.image-center {
+    margin: 0 auto;
+}

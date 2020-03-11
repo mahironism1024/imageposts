@@ -1,0 +1,21 @@
+<div id="likes_<%= imagepost.id %>">
+    <% if current_user.like?(imagepost) %>
+        <%= form_with(model: current_user.likes.find_by(imagepost_id: imagepost.id), method: :delete) do |f| %>
+            <%= hidden_field_tag :imagepost_id, imagepost.id %>
+            <%= button_tag type: 'submit', class: 'unlike-icon' do %>
+            <div class="icon-item">
+                <i class="fas fa-heart unlike"></i><span class="counts"><%= @imagepost.likes.count %></span>
+            </div>
+            <% end %>
+        <% end %>
+    <% else %>
+        <%= form_with(model: current_user.likes.build) do |f| %>
+            <%= hidden_field_tag :imagepost_id, imagepost.id %>
+            <%= button_tag type: 'submit', class: 'like-icon' do %>
+            <div class="icon-item">
+                <i class="far fa-heart like"></i><span class="counts"><%= @imagepost.likes.count %></span>
+            </div>
+            <% end %>
+        <% end %>
+    <% end %>
+</div>

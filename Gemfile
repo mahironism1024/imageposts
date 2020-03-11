@@ -46,6 +46,7 @@ gem 'omniauth-google-oauth2'
 # image uploader
 gem 'carrierwave'
 gem 'fog'
+gem 'rmagick'
 
 # 環境変数管理
 gem 'dotenv-rails'

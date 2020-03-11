@@ -25,9 +25,6 @@ class CommentsController < ApplicationController
   
   private
   
-  # def content_param
-  #   params.require(:comment).permit(:content)
-  # end
   def comment_params
     params.require(:comment).permit(:content, :imagepost_id)
   end

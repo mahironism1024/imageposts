@@ -1,0 +1,32 @@
+<div id="profile-card">
+    <div id="user-image-area">
+        <% if user.profimage == nil %>
+        <img class="profimage rounded-circle" src="https://c.tipsfound.com/windows10/02014/8.png">
+        <% else %>
+        <img class="profimage rounded-circle" src="<%= user.profimage %>">
+        <% end %>
+    </div>
+    <div id="user-profile-area">
+        <div>
+            <h5 id="username-area">ユーザー名</h5>
+            <p id="username"><%= user.name %></p>
+        </div>
+        <div>
+            <h5 id="selfintro-area">自己紹介</h5>
+            <% if user.selfintroduction == nil %>
+                <p style="color: grey;">自己紹介がありません</p>
+            <% else %>
+                <p id="selfintroduction"><%= user.selfintroduction %></p>
+            <% end %>
+        </div>
+        <%= render "relationships/follow_button", user: user %>
+        
+        <!-- ユーザープロフィールの編集ボタン | プロフィール画面だった場合に表示する -->
+        <% if current_user == user && current_page?(controller:'users', action: 'show') %>
+            <button id="profile-edit" class="btn btn-outline-primary"><i class="fas fa-user-edit"></i>&nbsp;編集</button>
+            <div id="user__edit-form">
+                <!-- profile-edit ボタンをクリックしたらajaxで編集フォームをレンダリングする場所 -->
+            </div>
+        <% end %>
+    </div>
+</div>

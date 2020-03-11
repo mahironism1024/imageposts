@@ -13,5 +13,5 @@ class Imagepost < ApplicationRecord
   
   mount_uploader :image, ImageUploader
   
-  is_impressionable :counter_cache => true, :unique => true
+  is_impressionable counter_cache: true
 end

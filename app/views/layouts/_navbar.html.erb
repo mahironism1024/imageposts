@@ -14,7 +14,11 @@
                     <li class="nav-item"><%= link_to "画像投稿", new_imagepost_path, class: "nav-link" %></li>
                     <li class="nav-item"><%= link_to "マイプロフィール", user_path(current_user), class: "nav-link" %></li>
                     <li class="nav-item"><%= link_to "signout", destroy_user_session_path, class: "nav-link" %></li>
-                    <img src="<%= current_user.profimage %>" class="rounded-circle nav-profile-image">
+                    <% if current_user.profimage == nil %>
+                        <img class="nav-profile-image rounded-circle" src="https://c.tipsfound.com/windows10/02014/8.png">
+                    <% else %>
+                        <img class="nav-profile-image rounded-circle" src="<%= current_user.profimage %>">
+                    <% end %>
                 <% end %>
             </ul>
         </div>

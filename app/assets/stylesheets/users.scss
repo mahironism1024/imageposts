@@ -1,3 +1,37 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#profile-card {
+    border: 2px solid #17a2b8;
+    border-radius: 6px;
+}
+
+#user-image-area {
+    text-align:center;
+    background: #17a2b8;
+    padding: 12px 0;
+}
+
+#user-profile-area {
+    box-sizing: border-box;
+    padding: 12px;
+}
+
+#username-area, #selfintro-area {
+    padding-left: 8px;
+    border-left: 2px solid #17a2b8;
+    color: #537b9f;
+}
+
+#username, #selfintroduction {
+    padding-left: 12px;
+}
+
+/* profile画面のプロフ画像サイズ */
+
+.profimage {
+    text-align: center;
+    width: 200px;
+    height: 200px;
+}

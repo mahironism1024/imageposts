@@ -1,0 +1,26 @@
+<h4 class="comment-title">コメント</h4>
+<div id="commentboard">
+<% if comments.any? %>
+    <% comments.each do |comment| %>
+    <div class="comment-group" id="comment-<%= comment.id %>">
+        <div class="comment-profimag">
+            <img src="<%= comment.user.profimage %>" class="rounded-circle" width="48" height="48">
+        </div>
+        <div class="comment-colum">
+            <p><%= link_to comment.user.name, user_path(comment.user.id) %>｜<%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S")%>
+                <% if comment.user == current_user %>
+                    <%= link_to comment_path(comment), method: :delete do %>
+                        <span class="text-danger"><i class="fas fa-trash-alt"></i>削除</span>
+                    <% end %>
+                <% end %>
+            </p>
+            <p><%= comment.content %></p>
+        </div>
+    </div>
+    <% end %>
+<% else %>
+    <h5 class="comment-none">
+        投稿されたコメントがありません。
+    </h5>
+<% end %>
+</div>

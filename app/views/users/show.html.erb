@@ -1,19 +1,32 @@
-<% if @user.profimage == nil %>
-    <img src="https://c.tipsfound.com/windows10/02014/8.png">
-<% else %>
-    <img src="<%= @user.profimage %>">
-<% end %>
-<p><%= @user.name %></p>
+<div class="row">
+    <div class="col-md-4">
+        <%= render 'users/profile_card', user: @user %>
+    </div>
 
-<%= render "relationships/follow_button", user: @user %>
-
-<div class="container">
-    <% if @imageposts.any? %>
-        <% @imageposts.each do |imagepost| %>
-            <h2><%= imagepost.impressionist_count(:filter => :session_hash) %></h2>
-            <p></i><%= link_to imagepost.title, imagepost_path(imagepost.id) %></p>
-            <p><%= imagepost.description %></p>
-            <img class="img-fluid" src="<%= imagepost.image %>">
+    <div class="col-md-8">
+        <% if @imageposts.any? %>
+            <% @imageposts.each do |imagepost| %>
+               <div class="panel panel-info pl-4">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <%=link_to imagepost.title, imagepost_path(imagepost.id) %>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div>
+                                <img class="img-fluid" src="<%= imagepost.image.thumb %>">
+                            </div>
+                        </div>
+                    </div>
+            <% end %>
+        <% else %>
+            <p class="alert alert-warning">まだ投稿がありません。</p>
         <% end %>
-    <% end %>
+    </div>
 </div>
+
+<script>
+    $('#profile-edit').on('click', () => {
+        $('#user__edit-form').html('<%=j render 'users/form', user: @user %>');
+    });
+</script>
