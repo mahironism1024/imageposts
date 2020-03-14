@@ -17,17 +17,17 @@ class UsersController < ApplicationController
       flash.now[:notice] = "プロフィールを更新しました。"
       render :update
     else
-      flash.now[:alert] = "プロフィール更新に失敗しました。"
+      respond_to do 
+        format.js { flash.now[:alert] = "プロフィール更新に失敗しました。" }
+      end
       render :update
     end
   end
   
   def destroy
-    @user = User.find(id: params[:id])
-    if @user == current_user
-      @user.destroy
-      redirect_to root_url
-    end
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to root_url
   end
   
   private

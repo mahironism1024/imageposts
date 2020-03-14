@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   
+  validates :name, presence: true, length: { maximum: 30 }
+  
   has_many :imageposts, dependent: :destroy
   
   has_many :relationships, class_name: "Relationship", foreign_key: "user_id", dependent: :destroy

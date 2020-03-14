@@ -71,6 +71,10 @@ class ImagepostsController < ApplicationController
     params.require(:imagepost).permit(:title, :description, :image)
   end
   
+  def update_params
+    params.require(:imagepost).permit(:title, :description)
+  end
+  
   def user_check
     @imagepost = Imagepost.find(params[:id])
     

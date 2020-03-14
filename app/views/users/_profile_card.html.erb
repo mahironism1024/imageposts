@@ -32,3 +32,13 @@
         <% end %>
     </div>
 </div>
+
+<script>
+    $('#profile-edit').on('click', () => {
+        const username = $('#username').text();
+        const introduction = $('#selfintroduction').text();
+        $('#user__edit-form').html('<%=j render 'users/form', user: @user %>');
+        $('#user_name').val(username);
+        $('#user_selfintroduction').text(introduction);
+    });
+</script>
