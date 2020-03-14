@@ -22,12 +22,7 @@ Rails.application.routes.draw do
     post 'signup', to: 'devise/registrations#create'
   end
   
-  resources :users, only: [:index, :show, :update] do
-    member do
-      get :followings
-      get :followers
-    end
-  end
+  resources :users, only: [:index, :show, :update, :destroy]
   resources :comments, only: [:create, :destroy]
   resources :imageposts
   resources :relationships, only: [:create, :destroy]

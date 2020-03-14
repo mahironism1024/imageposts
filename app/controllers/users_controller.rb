@@ -22,10 +22,12 @@ class UsersController < ApplicationController
     end
   end
   
-  def followings
-  end
-  
-  def followers
+  def destroy
+    @user = User.find(id: params[:id])
+    if @user == current_user
+      @user.destroy
+      redirect_to root_url
+    end
   end
   
   private
