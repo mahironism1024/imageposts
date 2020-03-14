@@ -34,7 +34,7 @@
 </div>
 
 <script>
-    $('#profile-edit').on('click', () => {
+    $('#profile-edit').click(() => {
         const username = $('#username').text();
         const introduction = $('#selfintroduction').text();
         $('#user__edit-form').html('<%=j render 'users/form', user: @user %>');
