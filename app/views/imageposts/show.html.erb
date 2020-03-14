@@ -17,17 +17,15 @@
     </div>
     <% if @imagepost.user == current_user %>
         <div id="edit_bar">
-            <%= link_to edit_imagepost_path(@imagepost), class: "btn btn-outline-primary" do %>
+            <div id="imagepost__edit-btn" class="btn btn-outline-primary">
                 <i class="fas fa-user-edit"></i><span>&nbsp;編集する</span>
-            <% end %>
-            <%= link_to imagepost_path(@imagepost), method: :delete, class: "btn btn-outline-danger" do %>
+            </div>
+            <div id="imagepost__delete-btn" class="btn btn-outline-danger">
                 <i class="fas fa-trash-alt"></i><span>&nbsp;削除する</span>
-            <% end %>
+            </div>
         </div>
     <% end %>
 </div>
-
-
 
 <h4 class="imagepost-description">説明文</h4>
 <div class="description-item">
@@ -53,3 +51,18 @@
         </div>
     </div>
 </div>
+
+<!-- modal-windowをレンダー要素 -->
+<div id="modal-window">
+</div>
+
+<!-- modal-windowレンダー時、画面全体をオーバーレイでマスキング-->
+<div class="overlay">
+</div>
+
+<script>
+    $('#imagepost__edit-btn').click(() => {
+        $('#modal-window').html('<%=j render "imageposts/edit_modal", imagepost: @imagepost %>')
+        $('.overlay').css({display: "block"});
+    });
+</script>
