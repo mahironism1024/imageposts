@@ -1,6 +1,6 @@
 class ImagepostsController < ApplicationController
   before_action :authenticate_user!, only: [:show, :new, :create]
-  before_action :user_check, only: [:edit, :update, :destroy]
+  before_action :user_check, only: [:update, :destroy]
   impressionist :actions=>[:show], :unique => [:impressionable_id, :ip_address]
   
   def index
@@ -35,9 +35,6 @@ class ImagepostsController < ApplicationController
       flash.now[:alert] = "画像の投稿に失敗しました。"
       render :new
     end
-  end
-  
-  def edit
   end
   
   def update

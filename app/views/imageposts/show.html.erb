@@ -60,16 +60,19 @@
 </div>
 
 <script>
+    // edit-modalをレンダー
     $('#imagepost__edit-btn').click(() => {
         $('#modal-window').html('<%=j render "imageposts/edit_modal", imagepost: @imagepost %>');
         $('.overlay').css({display: "block"});
     });
     
+    // delete-modalをレンダー
     $('#imagepost__delete-btn').click(() => {
         $('#modal-window').html('<%=j render "imageposts/delete_modal", imagepost: @imagepost %>');
         $('.overlay').css({display: "block"});
     });
     
+    // 編集or削除モーダル表示時、キャンセルボタンをクリックできるようイベントを登録
     $(document).on('click', '.cancel', () => {
         $('#modal-window').html("");
         $('.overlay').css({display: "none"});
