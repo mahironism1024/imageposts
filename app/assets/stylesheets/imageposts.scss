@@ -76,13 +76,11 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 500px;
-    height: 600px;
     background-color: white;
     z-index: 2;
     border-radius: 8px;
     box-sizing: border-box;
-    padding: 24px 12px;
+    padding: 24px 36px;
 }
 
 .overlay {
@@ -100,3 +98,4 @@
     display: flex;
     justify-content: space-between;
 }
+

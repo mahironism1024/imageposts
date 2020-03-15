@@ -1,4 +1,4 @@
-<div id="modal">
+<div id="modal" class="col-12 col-md-6">
         <%= form_with(model: imagepost, local: true) do |f| %>
             <div class="form-group">
                 <%= f.label "タイトル" %>
@@ -12,19 +12,13 @@
             
             <div class="btns">
                 <div>
-                    <%= f.submit "更新", class: "update btn btn-outline-primary" %>
+                    <%= button_tag type: "submit", class: "btn btn-outline-success" do %>
+                        <i class="fas fa-pen-nib"></i>&nbsp;更新する
+                    <% end %>
                 </div>
                 <div class="cancel btn btn-outline-danger">
                     <i class="fas fa-times"></i>&nbsp;キャンセル
                 </div>
             </div>
-
         <% end %>
 </div>
-
-<script>
-    $('.cancel').click(() => {
-        $('#modal-window').html("");
-        $('.overlay').css({display: "none"});
-    });
-</script>

@@ -62,7 +62,17 @@
 
 <script>
     $('#imagepost__edit-btn').click(() => {
-        $('#modal-window').html('<%=j render "imageposts/edit_modal", imagepost: @imagepost %>')
+        $('#modal-window').html('<%=j render "imageposts/edit_modal", imagepost: @imagepost %>');
         $('.overlay').css({display: "block"});
+    });
+    
+    $('#imagepost__delete-btn').click(() => {
+        $('#modal-window').html('<%=j render "imageposts/delete_modal", imagepost: @imagepost %>');
+        $('.overlay').css({display: "block"});
+    });
+    
+    $(document).on('click', '.cancel', () => {
+        $('#modal-window').html("");
+        $('.overlay').css({display: "none"});
     });
 </script>
