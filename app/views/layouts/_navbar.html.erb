@@ -14,7 +14,6 @@
                     <li class="nav-item"><%= link_to "画像投稿", new_imagepost_path, class: "nav-link" %></li>
                     <li class="nav-item"><%= link_to "マイプロフィール", user_path(current_user), class: "nav-link" %></li>
                     <li class="nav-item"><%= link_to "signout", destroy_user_session_path, class: "nav-link" %></li>
-                    <li class="nav-item"><%= link_to "退会", user_path(current_user), method: :delete, class: "nav-link" %></li>
                 <% end %>
             </ul>
         </div>
