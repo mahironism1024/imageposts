@@ -1,5 +1,5 @@
 <h3 class="imagepost-title">
-    <%= @imagepost.title %>
+    <%= simple_format(@imagepost.title, sanitize: true) %>
 </h3>
 <div class="image-center">
     <img src="<%= @imagepost.image %>" width="100%">
@@ -29,17 +29,16 @@
 
 <h4 class="imagepost-description">説明文</h4>
 <div class="description-item">
-    <span><%= @imagepost.description %></span>
+    <%= simple_format(@imagepost.description, sanitize: true) %>
 <div>
 
-<div class="row mt-5">
-    <div class="col-md-6 order-md-2">
+<div class="row mt-3">
+    <div class="col-md-4 order-md-1">
         <h4 class="user-info">投稿ユーザー</h4>
         <%= render 'users/profile_card', user: @user %>
     </div>
     
-
-    <div class="col-md-6 order-md-1">
+    <div class="col-md-8 order-md-2">
         <%= render 'comments/comments_board', comments: @comments %>
         <div class="pt-5">
             <%= form_with(model: @comment) do |f| %>
