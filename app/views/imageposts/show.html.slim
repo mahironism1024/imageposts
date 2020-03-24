@@ -1,0 +1,60 @@
+h3.imagepost-title
+  = simple_format(@imagepost.title, sanitize: true)
+.image-center
+  img src="#{@imagepost.image}" width="100%" /
+#imagepost_show_bar
+  .icon-group
+    .icon-item
+      i.far.fa-eye.text-info
+      span.counts= @imagepost.impressions.size
+    .icon-item
+      i.far.fa-comments.text-info
+      span.counts= @imagepost.comments.size
+    = render 'imageposts/likes_button', imagepost: @imagepost
+  - if @imagepost.user == current_user
+    #edit_bar
+      #imagepost__edit-btn.btn.btn-outline-primary
+        i.fas.fa-user-edit
+        span  編集する
+      #imagepost__delete-btn.btn.btn-outline-danger.ml-2
+        i.fas.fa-trash-alt
+        span  削除する
+
+h4.imagepost-description 説明文
+.description-item
+  = simple_format(@imagepost.description, sanitize: true)
+  div
+    .row.mt-3
+      .col-md-4.order-md-1
+        h4.user-info 投稿ユーザー
+        = render 'users/profile_card', user: @user
+      .col-md-8.order-md-2
+        = render 'comments/comments_board', comments: @comments
+        .pt-5
+          = form_with(model: @comment) do |f|
+            = f.hidden_field :imagepost_id
+            = f.label :content, "コメント"
+            = f.text_area :content, class: "form-control mb-2"
+            = f.submit "投稿", class: "btn btn-primary"
+
+    / modal-windowをレンダー要素
+    #modal-window
+
+    / modal-windowレンダー時、画面全体をオーバーレイでマスキング
+    .overlay
+    
+    javascript:
+      $('#imagepost__edit-btn').click(() => {
+          $('#modal-window').html('#{j render "imageposts/edit_modal", imagepost: @imagepost}');
+          $('.overlay').css({display: "block"});
+      });
+      
+      $('#imagepost__delete-btn').click(() => {
+          $('#modal-window').html('#{j render "imageposts/delete_modal", imagepost: @imagepost}');
+          $('.overlay').css({display: "block"});
+      });
+      
+      $(document).on('click', '.cancel', () => {
+          $('#modal-window').html("");
+          $('.overlay').css({display: "none"});
+      });

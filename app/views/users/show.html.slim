@@ -1,0 +1,18 @@
+.row
+  .col-md-4
+    = render 'users/profile_card', user: @user
+  .col-md-8
+    - if @imageposts.any?
+      - @imageposts.each do |imagepost|
+        .panel.panel-info.pl-4
+          .panel-heading
+            .panel-title
+              =link_to imagepost.title, imagepost_path(imagepost.id)
+          .panel-body
+            div
+              |  <img class="img-fluid" src="
+              = imagepost.image.thumb
+              | "> 
+    - else
+      p.alert.alert-warning
+        | まだ投稿がありません。

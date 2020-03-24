@@ -1,0 +1,28 @@
+.row
+  .col-md-4
+    = render 'layouts/sidebar'
+  .col-md-8
+    h3 ユーザー一覧
+    - if @users.any?
+      .row
+        .col-12.col-md
+          .user-box
+            table.table.table-bordered
+              thead.thead-light
+                th Image
+                th Name
+                th Posts
+                th Followers
+              tbody
+                - @users.each do |user|
+                  tr
+                    - if user.profimage == nil
+                      td align="center" 
+                        img.profile-image src="https://c.tipsfound.com/windows10/02014/8.png" /
+                    - else
+                      td align="center" 
+                        img.profile-image src="#{user.profimage}" /
+                    td.align-middle= link_to user.name, user_path(user.id)
+                    td.align-middle= user.imageposts.count
+                    td.align-middle= user.followers.count
+            = paginate @users

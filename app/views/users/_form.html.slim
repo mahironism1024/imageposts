@@ -1,0 +1,19 @@
+= form_with(model: user) do |f|
+  .form-group.mt-4
+    = f.label "ニックネーム"
+    = f.text_field :name, class: "form-control", required: true
+  .form-group
+    = f.label "自己紹介"
+    = f.text_area :selfintroduction, class: "form-control"
+  .btn-toolbar role="toolbar" 
+    div class="btn-group　btn-block" role="group" 
+      button.btn.btn-outline-primary type="submit" 
+        i.fas.fa-pen-nib
+        |  更新
+      button#profile-edit-cancel.btn.btn-outline-danger type="button" 
+        i.fas.fa-times
+        |  キャンセル
+  javascript:
+    $("#profile-edit-cancel").click(() => {
+      $('#user__edit-form').html("");
+    });

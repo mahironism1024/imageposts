@@ -1,0 +1,13 @@
+#modal.col-12.col-md-6
+  div
+    h3.text-center 確認画面
+    p.text-center 本当に画像を削除してよろしいですか？
+  = form_with(model: imagepost, local: true, method: :delete) do |f|
+    .btns
+      div
+        = button_tag type: "submit", class: "btn btn-outline-success" do
+          i.fas.fa-trash-alt
+          |  削除する
+      .cancel.btn.btn-outline-danger
+        i.fas.fa-times
+        |  キャンセル

@@ -1,0 +1,14 @@
+h1 新規画像の投稿
+.row
+  .col-sm-6
+    = form_with(model: @imagepost, local: true) do |f|
+      .form-group
+        = f.label "タイトル"
+        = f.text_field :title, class: "form-control"
+      .form-group
+        = f.label "説明文"
+        = f.text_area :description, class: "form-control"
+      .form-group
+        = f.label "アップロードイメージの選択"
+        = f.file_field :image
+      = f.submit "投稿", class: "btn btn-primary"

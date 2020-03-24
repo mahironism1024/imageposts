@@ -1,0 +1,6 @@
+.row
+  .col-sm-12.pt-4
+    - if notice
+      p#flash__notice.alert.alert-success= notice
+    - elsif alert
+      p#flash__alert.alert.alert-danger= alert

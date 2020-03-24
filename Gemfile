@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.3'
+ruby '2.6.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
@@ -45,7 +45,7 @@ gem 'omniauth-google-oauth2'
 
 # image uploader
 gem 'carrierwave'
-gem 'fog'
+gem 'fog-aws'
 gem 'rmagick'
 
 # 環境変数管理
@@ -57,7 +57,8 @@ gem 'kaminari'
 # PV数計測Gem
 gem 'impressionist'
 
-gem 'nokogiri'
+# template engine
+gem 'slim-rails'
 
 group :development, :test do
   # Use mysql as the database for Active Record

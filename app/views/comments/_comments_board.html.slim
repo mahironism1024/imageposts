@@ -1,0 +1,19 @@
+h4.comment-title コメント
+#commentboard
+  - if comments.any?
+    - comments.each do |comment|
+      .comment-group id="comment-#{comment.id}" 
+        .comment-profimag
+          img.rounded-circle height="48" src="#{comment.user.profimage}" width="48" /
+        .comment-colum
+          = link_to comment.user.name, user_path(comment.user.id)
+          | ｜#{comment.created_at.strftime("%Y/%m/%d %H:%M")}
+          - if comment.user == current_user
+            = link_to comment_path(comment), method: :delete do
+              span.text-danger
+                i.fas.fa-trash-alt.ml-2
+                | 削除
+          = simple_format(comment.content, sanitize: true)
+  - else
+    h5.comment-none
+      | 投稿されたコメントがありません。

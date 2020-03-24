@@ -1,0 +1,14 @@
+- if user_signed_in?
+  - unless current_user == user
+    - if current_user.following?(user)
+      = form_with(model: current_user.relationships.find_by(follow_id: user.id), local: true, method: :delete) do |f|
+        = hidden_field_tag :follow_id, user.id
+        button.btn.btn-block.btn-outline-danger type="submit" 
+          i.fas.fa-user-times
+          |  フォロー解除
+    - else
+      = form_with(model: current_user.relationships.build, local: true) do |f|
+        = hidden_field_tag :follow_id, user.id
+        button.btn.btn-block.btn-outline-primary type="submit" 
+          i.fas.fa-user-plus
+          |  フォロー

@@ -23,6 +23,8 @@ module Imageposts
     config.load_defaults 5.2
     # devise 日本語化
     config.i18n.default_locale = :ja
+    # template engine slim
+    config.generators.template_engine = :slim
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

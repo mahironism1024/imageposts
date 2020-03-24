@@ -1,0 +1,31 @@
+body
+  header
+    nav.navbar.navbar-expand-sm.navbar-dark.bg-dark.p-4
+      h1
+        a.navbar-brand.brand-name href="/"  PictPost
+      button.navbar-toggler data-target="#navbarSup" data-toggle="collapse" type="button" 
+        span.navbar-toggler-icon
+      #navbarSup.collapse.navbar-collapse.justify-content-end
+        ul.navbar-nav
+          - unless user_signed_in?
+            li.nav-item
+              = link_to login_path, class: "nav-link signin-btn" do
+                i.fas.fa-sign-in-alt
+                |  ログイン
+            li.nav-item
+              = link_to signup_path, class: "nav-link signin-btn" do
+                i.fas.fa-user-plus
+                |  サインアップ
+          - else
+            li.nav-item
+              = link_to new_imagepost_path, class: "nav-link" do
+                i.fas.fa-file-import
+                |  画像投稿
+            li.nav-item
+              = link_to user_path(current_user), class: "nav-link" do
+                i.far.fa-address-card
+                |  マイページ
+            li.nav-item
+              = link_to destroy_user_session_path, class: "nav-link" do
+                i.fas.fa-sign-in-alt
+                |  サインアウト
